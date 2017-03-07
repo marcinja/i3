@@ -261,6 +261,10 @@ set $base0F #fcc09e
 #For hiding i3 bar
 bindsym $mod+Alt_L bar hidden_state toggle 
 
+#Hides title bars 
+new_window none
+
+
 
 #Floating windows:
 for_window [class="Pavucontrol"] floating enable
