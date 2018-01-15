@@ -90,15 +90,15 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
-set $workspace1 "1: FireFox"
-set $workspace2 "2: Editor"
-set $workspace3 "3: Terminal"
-set $workspace10 "10: Music"
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -181,10 +181,11 @@ bindsym XF86AudioPrev exec playerctl previous
 
 bindsym $mod+r mode "resize"
 
-
 exec_always xrandr --dpi 160
-exec_always feh --bg-scale /home/marcinja/Pictures/ascent.png
+exec xset r rate 250 50
+exec_always feh --bg-scale /home/marcinja/Pictures/mojito.jpg
 exec --no-startup-id compton --config ~/.config/compton.conf -b
+
 exec synclient PalmDetect=1
 exec synclient HorizTwoFingerScroll=1
 exec synclient HorizScrollDelta=50
@@ -200,8 +201,13 @@ bindsym $mod+shift+x exec lock -f SFNS-Display
 
 #Set Workspaces for programs
 assign [class="Spotify"] $workspace10
-assign [class="Eclipse"] $workspace2
-assign [class="Atom"] $workspace2
+assign [class="emacs"] $workspace2
+assign [class="firefox"] $workspace2
+
+exec emacs
+exec firefox
+exec redshift-gtk
+exec nm-applet
 
 smart_gaps on
 
@@ -227,6 +233,14 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
+# gruvbox colors
+set $black      #282828
+set $darkblack  #1d2021
+set $white	    #ebdbb2
+set $grey       #a89984
+set $white      #ebdbb2
+set $red #cc241d
+
 # Window Colours
 #                         border  background text    indicator
   client.focused          $base01 $base01    $base07 $base0F
@@ -237,38 +251,39 @@ set $base0F #fcc09e
 # Bar
   bar {
     mode hide
-    modifier Mod3 #unused elsewhere, needed to get proper toggle behavior 
+    modifier Mod3 #unused elsewhere, needed to get proper toggle behavior
 
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    font pango: System San Francisco Display, FontAwesome 10
+    font pango: System San Francisco Display, FontAwesome 9
     position bottom
     # strip_workspace_numbers yes
     height 25
     bindsym button4 nop
     bindsym button5 nop
     colors {
-      separator $base03
-      background $base01
-      statusline $base05
-#                        border  background text
-      focused_workspace  $base01 $base01    $base07
-      active_workspace   $base01 $base02    $base03
-      inactive_workspace $base01 $base01    $base03
-      urgent_workspace   $base01 $base01    $base08
+      separator $grey
+
+      statusline          $black
+        background          $black
+
+        #                           BORDER      BACKGROUND  TEXT
+        focused_workspace   $black      $black      $white
+        active_workspace    $black 	    $black		$white
+        inactive_workspace  $black 	    $black 		$grey
+        urgent_workspace    $black      $black      $grey
+        binding_mode $red $red $black
     }
 }
 
 #For hiding i3 bar
-bindsym $mod+Alt_L bar hidden_state toggle 
+bindsym $mod+Alt_L bar hidden_state toggle
 
-#Hides title bars 
+#Hides title bars
 new_window none
-
-
 
 #Floating windows:
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Lxappearance"] floating enable
 
-#multimonitor 
+#multimonitor
 force_xinerama yes
