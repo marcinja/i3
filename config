@@ -183,7 +183,7 @@ bindsym $mod+r mode "resize"
 
 exec_always xrandr --dpi 160
 exec xset r rate 250 50
-exec_always feh --bg-scale /home/marcinja/Pictures/mojito.jpg
+exec_always feh --bg-scale /home/marcinja/Pictures/blue.png
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 
 exec synclient PalmDetect=1
@@ -202,7 +202,7 @@ bindsym $mod+shift+x exec lock -f SFNS-Display
 #Set Workspaces for programs
 assign [class="Spotify"] $workspace10
 assign [class="emacs"] $workspace2
-assign [class="firefox"] $workspace2
+assign [class="firefox"] $workspace1
 
 exec emacs
 exec firefox
