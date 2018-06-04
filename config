@@ -182,7 +182,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+r mode "resize"
 
 exec_always xrandr --dpi 160
-exec xset r rate 250 50
+exec_always xset r rate 250 50
 exec_always feh --bg-scale /home/marcinja/Pictures/blue.png
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 
@@ -287,3 +287,8 @@ for_window [class="Lxappearance"] floating enable
 
 #multimonitor
 force_xinerama yes
+
+# Start emacs daemon
+exec --no-startup-id emacs --daemon
+
+
